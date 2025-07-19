@@ -1,4 +1,3 @@
-
 # MCP Server for MySQL based on NodeJS
 
 
@@ -283,12 +282,69 @@ If you want to clone and run this MCP server directly from the source code, foll
    - `/full/path/to/mcp-server-mysql` with the full path to where you cloned the repository
    - Set the MySQL credentials to match your environment
 
+   #### Windows OS
+
+   For Windows users, the configuration in `claude_desktop_config.json` will be slightly different.
+
+   **With NVM for Windows**
+
+   If you are using NVM for Windows, your configuration might look like this. You will need to find the correct path to your Node.js executable within your NVM directory.
+
+   ```json
+   {
+     "mcpServers": {
+       "mcp_server_mysql": {
+          "command": "C:\\Users\\[username]\\AppData\\Local\\nvm\\v20.19.2\\node.exe",
+          "args": [
+              "D:\\mcp\\mcp-server-mysql-main\\dist\\index.js"
+          ],
+          "env": {
+              "MYSQL_HOST": "127.0.0.1",
+              "MYSQL_PORT": "3306",
+              "MYSQL_USER": "root",
+              "MYSQL_PASS": "YourStrongPassword",
+              "MYSQL_DB": "database_name",
+              "PATH": "C:\\Users\\[username]\\AppData\\Local\\nvm\\v20.19.2",
+              "NODE_PATH": "C:\\Users\\[username]\\AppData\\Local\\nvm\\v20.19.2\\node_modules"
+          }
+        }
+     }
+   }
+   ```
+   **Note:** Remember to replace `[username]`, `v20.19.2`, and the path to `index.js` with your specific details.
+
+   **Without NVM (NodeJS Traditional)**
+
+   If you have installed Node.js directly without using NVM, the path to the executable will be different. A typical installation path is `C:\Program Files\nodejs\node.exe`.
+
+   ```json
+   {
+     "mcpServers": {
+       "mcp_server_mysql": {
+          "command": "D:\\node\\node-v22.17.1-win-x64\\node.exe",
+          "args": [
+              "D:\\mcp\\mcp-server-mysql-main\\dist\\index.js"
+          ],
+          "env": {
+              "MYSQL_HOST": "127.0.0.1",
+              "MYSQL_PORT": "3306",
+              "MYSQL_USER": "root",
+              "MYSQL_PASS": "YourStringPassword",
+              "MYSQL_DB": "database_name",
+              "PATH": "D:\\node\\node-v22.17.1-win-x64",
+              "NODE_PATH": "D:\\node\\node-v22.17.1-win-x64\\node_modules"
+          }
+       }
+     }
+   }
+   ```
+   **Note:** You will need to replace the `args` path with the correct path to the `index.js` file in your project directory.
+
 5. **Test the server**
    ```bash
    # Run the server directly to test
    node dist/index.js
    ```
-
    If it connects to MySQL successfully, you're ready to use it with Claude Desktop.
 
 ### Run in remote mode
